@@ -34,52 +34,54 @@ string addStrings(string num1, string num2)
         int carry = 0;
         int j=num2.size()-1;
 
-        for (int i = num1.size()-1;i>=0;i--) 
+          for (int i = num1.size()-1;i>=0;i--) 
         {
             if (j>=0) 
             {
                 int sum = 0;
-
-                if(carry)
-                {
-                    sum++;
-                    carry--;
-                }
-
-                sum += (num1[i] - '0') + (num2[j] - '0');
-
-                if (sum > 9)
-                {
-                    carry++;
-                    sum = sum % 10;
-                }
-
+                sum += (num1[i] - '0') + (num2[j] - '0') + carry;
+                carry = sum/10;
+                sum = sum%10;
                 ans += sum + '0';
                 j--;
             }
             else
             {
-                if(carry)
-                {
-                    int sum=(num1[i]-'0')+1;;
-                    carry--;
-
-                    if (sum > 9)
-                    {
-                        carry++;
-                        sum = sum % 10;
-                    }
-
-                    ans += sum + '0';
-                }
-                else
-                {
-                    ans+=num1[i];
-                }
-                
+                int sum=(num1[i]-'0')+carry;
+                carry=sum/10;
+                sum=sum%10;
+                ans += sum + '0';   
             }
 
         }
+    //  for (int i = num1.size()-1;i>=0;i--) {
+    //     if (j>=0){
+    //         int sum = 0;
+    //         if(carry){
+    //             sum++;
+    //             carry--;
+    //         }
+    //         sum += (num1[i] - '0') + (num2[j] - '0');
+    //         if (sum > 9){
+    //             carry++;
+    //             sum = sum % 10;
+    //         }
+    //         ans += sum + '0';
+    //         j--;
+    //     }else{
+    //         if(carry){
+    //             int sum=(num1[i]-'0')+1;;
+    //             carry--;
+    //             if (sum > 9){
+    //                 carry++;
+    //                 sum = sum % 10;
+    //             }
+    //             ans += sum + '0';
+    //         }else{
+    //             ans+=num1[i];
+    //         }
+    //     }
+    // }
 
         if(carry)
         {
