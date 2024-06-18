@@ -85,13 +85,10 @@ string addStrings(string num1, string num2)
 
         if(carry)
         {
-            ans.push_back('1');
+            ans+='1';
         }
 
-        for (int i = 0; i < ans.size() / 2; i++) 
-        {
-            swap(ans[i], ans[ans.size() - 1 - i]);
-        }
+        reverse(ans.begin(),ans.end());
 
         return ans;
     }
