@@ -27,6 +27,10 @@ string longestPalindrome(string s) {
                 str1+=s[i];
             }
 
+            if(str1.size()<length){
+                break;
+            }
+
             str2=str1;
             reverse(str2.begin(),str2.end());
 
