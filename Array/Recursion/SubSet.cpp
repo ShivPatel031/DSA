@@ -16,7 +16,7 @@
 // Input: nums = [0]
 // Output: [[],[0]]
 
-void subset(vector<vector<int>> &ans,int index,int n,vector<int> temp,vector<int> &nums){
+void subset(vector<vector<int>> &ans,int index,int n,vector<int> &temp,vector<int> &nums){
 
         if(index==n)
         {
@@ -27,6 +27,7 @@ void subset(vector<vector<int>> &ans,int index,int n,vector<int> temp,vector<int
         subset(ans,index+1,n,temp,nums);
         temp.push_back(nums[index]);
         subset(ans,index+1,n,temp,nums);
+        temp.pop_back(); //if we pass temp as refrence this is needed
         
 }
 vector<vector<int>> subsets(vector<int>& nums) {
