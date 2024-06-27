@@ -1,4 +1,4 @@
-// Next Greater Element in Circular Array GFG
+// Next Greater Element in Circular Array GFG leetcode 503
 
 // Given an circular array arr[ ] of size n having distinct elements, the task is to find the next greater element for each element of the array .
 // Note : The next greater element of an element in the array is the first greater number to its traversing-order next in the array, which means you could search circularly to find its next greater number. If it doesn't exist, return -1 for this number. 
