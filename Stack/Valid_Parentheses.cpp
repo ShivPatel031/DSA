@@ -26,6 +26,8 @@
 // 1 <= s.length <= 104
 // s consists of parentheses only '()[]{}'.
 
+// we can do it without stack by tracking count of opening and closing brackets for all
+
 bool isValid(string s) 
 {
     if(s[0] == ')' || s[0] == '}' || s[0] == ']')
