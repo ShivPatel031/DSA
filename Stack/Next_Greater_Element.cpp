@@ -31,34 +31,55 @@
 
 // can also solve by going right to left in arr
 
-vector<long long> nextLargerElement(vector<long long> arr, int n)
+vector<int> leftSmaller(int n, int a[])
 {
     stack<int> temp;
+    vector<int> arr(n,-1);
     
-    temp.push(0);
-    
-    for(int i = 1;i<n;i++)
+    for(int i = n-1;i>=0;i--)
     {
-        if(arr[temp.top()]<arr[i])
+        while(!temp.empty() && a[temp.top()]>a[i])
         {
-            while(!temp.empty() && arr[temp.top()]<arr[i])
-            {
-                arr[temp.top()]=arr[i];
-                temp.pop();
-            }
-            temp.push(i);
+            arr[temp.top()]=a[i];
+            temp.pop();
         }
-        else
-        {
-            temp.push(i);
-        }
-    }
-    
-    while(!temp.empty())
-    {
-        arr[temp.top()]=-1;
-        temp.pop();
+        
+        temp.push(i);
     }
     
     return arr;
 }
+
+
+// what i thought first
+// vector<long long> nextLargerElement(vector<long long> arr, int n)
+// {
+//     stack<int> temp;
+    
+//     temp.push(0);
+    
+//     for(int i = 1;i<n;i++)
+//     {
+//         if(arr[temp.top()]<arr[i])
+//         {
+//             while(!temp.empty() && arr[temp.top()]<arr[i])
+//             {
+//                 arr[temp.top()]=arr[i];
+//                 temp.pop();
+//             }
+//             temp.push(i);
+//         }
+//         else
+//         {
+//             temp.push(i);
+//         }
+//     }
+    
+//     while(!temp.empty())
+//     {
+//         arr[temp.top()]=-1;
+//         temp.pop();
+//     }
+    
+//     return arr;
+// }
