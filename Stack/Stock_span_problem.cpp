@@ -47,6 +47,8 @@
 // 1 ≤ N ≤ 105
 // 1 ≤ C[i] ≤ 105
 
+// we can also solve this problem with next gretter in left logic 
+
 vector <int> calculateSpan(int price[], int n)
 {
    vector<int> ans(n,1);
