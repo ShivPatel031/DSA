@@ -29,6 +29,8 @@
 // 1 ≤ n ≤ 106
 // 0 ≤ arr[i] ≤ 1018
 
+// can also solve by going right to left in arr
+
 vector<long long> nextLargerElement(vector<long long> arr, int n)
 {
     stack<int> temp;
