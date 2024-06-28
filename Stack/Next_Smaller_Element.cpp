@@ -6,24 +6,13 @@ vector<int> nextSmallerElement(vector<int> &arr)
 
     for(int i = 0;i<arr.size();i++)
     {
-        if(temp.empty())
+        while(!temp.empty() && arr[temp.top()] > arr[i])
         {
-            temp.push(i);
+            arr[temp.top()]=arr[i];
+            temp.pop();
         }
-        else if(arr[temp.top()] > arr[i])
-        {
-            while(!temp.empty() && arr[temp.top()] > arr[i])
-            {
-                arr[temp.top()]=arr[i];
-                temp.pop();
-            }
 
-            temp.push(i);
-        }
-        else
-        {
-            temp.push(i);
-        }
+        temp.push(i);
     }
 
     while(!temp.empty())
