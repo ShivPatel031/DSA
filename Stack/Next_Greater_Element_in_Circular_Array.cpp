@@ -75,20 +75,13 @@ vector<long long> nextLargerElement(vector<long long> &arr, int n)
             i=0;
         }
         
-        if(arr[temp.top()]<arr[i])
+        while(!temp.empty() && arr[temp.top()]<arr[i])
         {
-            while(!temp.empty() && arr[temp.top()]<arr[i])
-            {
-                arr[temp.top()]=arr[i];
-                temp.pop();
-            }
-            
-            temp.push(i);
+            arr[temp.top()]=arr[i];
+            temp.pop();
         }
-        else
-        {
-            temp.push(i);
-        }
+        
+        temp.push(i);
         
         i++;
         count++;
