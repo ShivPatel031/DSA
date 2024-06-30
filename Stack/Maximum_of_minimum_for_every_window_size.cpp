@@ -54,6 +54,59 @@
 // 1 <= N <= 105
 // 1 <= arr[i] <= 106
 
+// can solve using next right smallest  and next left smallest element usnig stack in O(N)
+vector <int> maxOfMin(int arr[], int n)
+{
+    vector<int> ans(n,0);
+    stack<int> temp;
+    
+    for(int i = 0 ;i<n;i++)
+    {   
+        while(!temp.empty() && arr[temp.top()]>arr[i])
+        {
+            int index = temp.top();
+            temp.pop();
+            int range = 0;
+            
+            if(temp.empty())
+            {
+                range= i;
+            }
+            else{
+                range=i-temp.top()-1;
+            }
+            
+            ans[range-1]=max(ans[range-1],arr[index]);
+        }
+        
+        temp.push(i);
+    }
+    
+    while(!temp.empty())
+    {
+        int index = temp.top();
+        temp.pop();
+        int range = 0;
+        
+        if(temp.empty())
+        {
+            range= n;
+        }
+        else{
+            range=n-temp.top()-1;
+        }
+        
+        ans[range-1]=max(ans[range-1],arr[index]);
+    }
+    
+    for(int i=n-2;i>=0;i--)
+    {
+        ans[i]=max(ans[i],ans[i+1]);
+    }
+    
+    return ans;
+}
+
 
 // but timeCommplexity is O(n^3)
 // vector <int> maxOfMin(int arr[], int n)
