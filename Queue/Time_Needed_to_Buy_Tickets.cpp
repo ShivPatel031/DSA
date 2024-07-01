@@ -33,26 +33,28 @@
 // 1 <= tickets[i] <= 100
 // 0 <= k < n
 
-int timeRequiredToBuy(vector<int>& tickets, int k) 
-{
-    int time=0;
-    queue<int> temp;
 
-    for(int i = 0;i<tickets.size();i++)
-    {
-        temp.push(i);
-    }
+// but below code take O(N^2)
+// int timeRequiredToBuy(vector<int>& tickets, int k) 
+// {
+//     int time=0;
+//     queue<int> temp;
 
-    while(tickets[k]!=0)
-    {
-        time++;
-        tickets[temp.front()]--;
-        if(tickets[temp.front()])
-        {
-            temp.push(temp.front());
-        }
-        temp.pop();
-    }
+//     for(int i = 0;i<tickets.size();i++)
+//     {
+//         temp.push(i);
+//     }
 
-    return time;
-}
+//     while(tickets[k]!=0)
+//     {
+//         time++;
+//         tickets[temp.front()]--;
+//         if(tickets[temp.front()])
+//         {
+//             temp.push(temp.front());
+//         }
+//         temp.pop();
+//     }
+
+//     return time;
+// }
