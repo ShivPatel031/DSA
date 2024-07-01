@@ -38,7 +38,7 @@ class Queue
       arr[front]=x;
     }
     
-    int pop()
+    void pop()
     {
       if(isEmpty() || front < rear)
       {
@@ -46,9 +46,14 @@ class Queue
         return -1;
       }
     
-      int element = arr[rear];
       rear++;
-      return element;
+        
+    }
+
+    int front()
+    {
+        if(isEmpty()){return -1;}
+        return arr[front];
     }
     
     void resetQueue()
@@ -103,22 +108,25 @@ class CQueue
       arr[front]=x;
     }
     
-    int pop()
+    void pop()
     {
       if(isEmpty() || front+1==rear)
       {
         cout<<"CQueue is Underflow"<<endl;
         return -1;
       }
-        
-      int element = arr[rear];
 
       if(rear==size-1 && front !=0)
       {
           rear=-1;
       }
       rear++;
-      return element;
+    }
+
+    int front()
+    {
+        if(isEmpty()){return -1;}
+        return arr[front];
     }
     
     void resetQueue()
