@@ -19,7 +19,7 @@ void kWindow(vector<int> &arr,int k)
      q.push(arr[i]); 
   }
 
-  for(int i = k ; i<arr.size();i++)
+  for(int i = k-1 ; i<arr.size();i++)
   {
     q.push(arr[i]);
     display(q);
