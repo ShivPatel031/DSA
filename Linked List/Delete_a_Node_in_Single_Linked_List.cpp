@@ -28,3 +28,19 @@ Node* deleteNode(Node *head,int x)
     
     return head;
 }
+
+// with recursion
+Node* deleteNode(Node *head,int x)
+{
+   
+   if(x==1)
+   {
+       Node *temp=head->next;
+       delete head;
+       return temp;
+   }
+   
+   head->next = deleteNode(head->next,x-1);
+   
+   return head;
+}
