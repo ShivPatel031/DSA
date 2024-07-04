@@ -58,3 +58,21 @@ ListNode* reverseList(ListNode* head)
     
     return head; 
 }
+
+// another one
+ListNode* reverse(ListNode* curr,ListNode* prev)
+{
+    if(curr)
+    {
+      return prev;
+    }
+  
+    ListNode *fu = curr->next;
+    curr->next = prev;
+    return reverse(fu,curr);
+}
+
+ListNode* reverseList(ListNode* head) 
+{ 
+    return reverse(head,nullptr); 
+}
