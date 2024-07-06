@@ -36,7 +36,6 @@ void insertAtFront(int x)
   {
     Node *temp = new Node(x);
     temp->next=head;
-    temp->prev=nullptr;
     head->prev=temp
     head=temp;
   }
@@ -52,7 +51,6 @@ void insertAtBack(int x)
   else
   {
     Node *temp = new Node(x);
-    temp->next=nullptr;
     temp->prev=tail;
     tail->next=temp;
     tail=temp;
