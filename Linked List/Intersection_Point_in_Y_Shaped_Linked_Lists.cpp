@@ -58,6 +58,8 @@ int intersectPoint(Node* head1, Node* head2)
     return -1;
 }
 
+// can be sloved by making one linked list into loop by marging end with start and then using other linked list head to detect loop and find loop point
+
 // but use more then one loop
 // int intersectPoint(Node* head1, Node* head2)
 // {
