@@ -1,4 +1,5 @@
 // Intersection Point in Y Shaped Linked Lists GFG
+// Intersection of Two Linked Lists leetcode 160
 
 // Given two singly linked lists of size N and M, write a program to get the point where two linked lists intersect each other.
 
@@ -32,6 +33,38 @@
 // Length of Both linkedList before intersection(if any) is greater than 0.
 // 1 ≤ N + M ≤ 2*105
 // -1000 ≤ value ≤ 1000
+
+// leetcode solution
+ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) 
+{
+   ListNode* t1=headA;
+   ListNode* t2=headB;
+
+   if(headA==NULL  || headB==NULL)
+   {
+       return NULL;
+   }
+
+   while(t1!=t2)
+   {
+       t1=t1->next;
+       t2=t2->next;
+
+       if(t1==t2)
+       {
+           return t1;
+       }
+       if(t1==NULL)
+       {
+           t1=headB;
+       }
+       if(t2==NULL)
+       {
+           t2=headA;
+       }
+   }
+   return t1;
+}
 
 // optimize way with one loop
 int intersectPoint(Node* head1, Node* head2)
