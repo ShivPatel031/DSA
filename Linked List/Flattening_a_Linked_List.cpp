@@ -88,12 +88,11 @@ Node *flatten(Node *root)
     
     Node *head =root;
     
-    root=root->next;
-    
-    while(root)
+    while(root->next)
     {
-        head=mergeTwoList(head,root);
         root=root->next;
+        head->next=nullptr;
+        head=mergeTwoList(head,root);
     }
     
     return head;
