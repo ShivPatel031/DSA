@@ -36,77 +36,132 @@
 // lists[i] is sorted in ascending order.
 // The sum of lists[i].length will not exceed 104.
 
+// optimize way using merge sort
 ListNode* twoSortedList(ListNode* list1,ListNode* list2)
 {
-    ListNode *head=nullptr,*temp=nullptr; 
+    if(!list1)
+    {
+        return list2;
+    }
+    else if(!list2)
+    {
+        return list1;
+    }
+    
+    ListNode *head=new ListNode(-1),*temp=head; 
 
     while(list1 && list2)
     {
         if(list1->val <= list2->val)
         {
-            if(!head)
-            {
-                head=list1;
-                temp=list1;
-            }
-            else
-            {
-                temp->next=list1;
-                temp=temp->next;
-            }
+            
+            temp->next=list1;
+            temp=list1;
             list1=list1->next;
         }
         else
         {
-            if(!head)
-            {
-                head=list2;
-                temp=list2;
-            }
-            else
-            {
-                temp->next=list2;
-                temp=temp->next;
-            }
+            temp->next=list2;
+            temp=list2;
             list2=list2->next;
         }
     }
 
-    if(temp)
+    if(list1)
     {
-        if(list1)
-        {
-            temp->next=list1;
-        }
-        else
-        {
-            temp->next=list2;
-        }
-    }  
-    else
+        temp->next=list1;
+    }
+    
+    if(list2)
     {
-        if(list1)
-        {
-            return list1;
-        }
-        else
-        {
-            return list2;
-        }
+        temp->next=list2;
     }
 
-    return head;
+    return head->next;
 }
+
+void mergeSort(vector<ListNode*>& lists,int start,int end)
+{
+    if(start>=end)
+    {
+        return;
+    }
+
+    int mid=start + (end-start)/2;
+
+    mergeSort(lists,start,mid);
+    mergeSort(lists,mid+1,end);
+
+    lists[start]=twoSortedList(lists[start],lists[mid+1]);
+
+}
+
 ListNode* mergeKLists(vector<ListNode*>& lists) 
 {
     if(lists.size()==0) return nullptr;
     
+    mergeSort(lists,0,lists.size()-1);
     ListNode *head=lists[0];
-
-    for(int i = 1 ;i<lists.size();i++)
-    {
-        head=twoSortedList(head,lists[i]);
-    }
 
     return head;
 }
+
+// accepted but timecomplexsity is highe
+// ListNode* twoSortedList(ListNode* list1,ListNode* list2)
+// {
+//     if(!list1)
+        // {
+        //     return list2;
+        // }
+        // else if(!list2)
+        // {
+        //     return list1;
+        // }
+        
+        // ListNode *head=new ListNode(-1),*temp=head; 
+    
+        // while(list1 && list2)
+        // {
+        //     if(list1->val <= list2->val)
+        //     {
+                
+        //         temp->next=list1;
+        //         temp=list1;
+        //         list1=list1->next;
+        //     }
+        //     else
+        //     {
+        //         temp->next=list2;
+        //         temp=list2;
+        //         list2=list2->next;
+        //     }
+        // }
+    
+        // if(list1)
+        // {
+        //     temp->next=list1;
+        // }
+        
+        // if(list2)
+        // {
+        //     temp->next=list2;
+        // }
+    
+        // return head->next;
+//     }
+
+//     return head;
+// }
+// ListNode* mergeKLists(vector<ListNode*>& lists) 
+// {
+//     if(lists.size()==0) return nullptr;
+    
+//     ListNode *head=lists[0];
+
+//     for(int i = 1 ;i<lists.size();i++)
+//     {
+//         head=twoSortedList(head,lists[i]);
+//     }
+
+//     return head;
+// }
