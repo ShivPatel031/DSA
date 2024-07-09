@@ -17,6 +17,27 @@ class Node
     }
 }
 
+// using recursion and by preorder;
+
+Node* binaryTree()
+{
+    int x;
+    cout<<"Enter Node :";
+    cin>>x;
+
+    if(x==-1) return nullptr;
+
+    Node *temp = new Node(x);
+
+    cout<<"Enter Left child of "<<x<<" :";
+    temp->left=binaryTree();
+
+    cout<<"Enter right child of "<<x<<" :";
+    temp->right=binaryTree();
+
+    return temp;
+}
+
 int main()
 {
   int x;
@@ -28,10 +49,12 @@ int main()
   Node *root=new Node(x);
   q.push(root);
 
+    // this will create level order binary tree
   while(!q.empty())
   {
     Node *temp=q.front();
     q.pop();
+
     cout<<"Enter left value of "<<temp->data<<" Node : ";
     cin>>first;
 
@@ -43,6 +66,7 @@ int main()
     
     cout<<"Enter right value of "<<temp->data<<" Node : ";
     cin<<second;
+
     if(second!=-1)
     {
       temp->right=new Node(second);
