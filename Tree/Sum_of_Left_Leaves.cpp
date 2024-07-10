@@ -1,4 +1,4 @@
-// Sum of Left Leaves leetcode 404
+// Sum of Left Leaves leetcode 404 GFG
 
 // Given the root of a binary tree, return the sum of all left leaves.
 
