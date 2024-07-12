@@ -1,54 +1,62 @@
 // Using recursion
-void inOrder_recursive(Node *r){
-        if (r == nullptr){
-            return;
-        }
-        inorder(r->left);
-        cout<<r->data<<" ";
-        inorder(r->right);
-    }
+void inorder(Node *root,vector<int> &ans)
+{
+    if(!root) return;
+        
+    inorder(root->left,ans);
+    ans.push_back(root->data);
+    inorder(root->right,ans);
+}
+
+vector<int> inOrder(Node* root) 
+{
+    vector<int> ans;
+    inorder(root,ans);
+    return ans;
+}
 
 // Using iteration
-vector<int> inOrder_iterative(Node* root)
+vector<int> inOrder(Node* root)
+{
+    vector<int> ans;
+    
+    if(!root) return ans;
+    
+    stack<Node *> s;
+    stack<bool> check;
+    
+    s.push(root);
+    check.push(0);
+    
+    while(!s.empty())
     {
-        //code here
-        stack<Node *> s1;
-        stack<bool> s2;
+        Node *temp=s.top();
+        bool t=check.top();
+        s.pop();
+        check.pop();
         
-        vector<int> ans;
-        
-        s1.push(root);
-        s2.push(0);
-        
-        while (!s1.empty()){
-
-            Node *temp=s1.top();
-            bool t=s2.top();
-            s1.pop();
-            s2.pop();
-            if (t == 0){
-                
-                if (temp->right){
-
-                s1.push(temp->right);
-                s2.push(0);
-                }
-
-                s1.push(temp);
-
-                t=1;
-                s2.push(t);
-
-                if (temp->left){
-
-                s1.push(temp->left);
-                s2.push(0);
-                }    
+        if(t==0)
+        {
+            if(temp->right)
+            {
+                s.push(temp->right);
+                check.push(0);
             }
-            else{
-                ans.push_back(temp->data);
+            
+            s.push(temp);
+            check.push(1);
+            
+            if(temp->left)
+            {
+                s.push(temp->left);
+                check.push(0);
             }
         }
-        
-        return ans;
+        else
+        {
+            ans.push_back(temp->data);
+        }
     }
+    
+    return ans;
+}
