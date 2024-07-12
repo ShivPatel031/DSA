@@ -1,31 +1,38 @@
 // using recurtion
-void preorder_recursive(Node *r){
-        if (r == nullptr){
-            return;
-        }
-        cout<<r->data<<" ";
+void preorder(Node *root,vector<int> &ans)
+{
+    if (!root) return;
 
-
-        preorder_recursive(r->left);
-        
-        preorder_recursive(r->right);
-
+    ans.push_back(root->data);
+    preorder(root->left,ans);
+    preorder(root->right,ans);
 }
 
+vector <int> preorder(Node* root)
+{
+  vector<int> ans;
+  preorder(root,ans);
+  return ans;
+}
 //using iteretion
-void preorder_iteretive(Node *r){
-        stack<Node *> s;
-        s.push(root);
-
-        while (!s.empty()){
-            Node *temp=s.top();
-            s.pop();
-
-            cout<<temp->data<<' ';
-
-            if (temp->right) s.push(temp->right);   //take roo->right on top because in stack r->left will be on top
-            if (temp->left) s.push(temp->left);
-            
-
-        }
+vector<int> preOrder(Node* root)
+{
+    vector<int> ans;
+    if(!root) return  ans;
+    stack<Node *> s1;
+    s1.push(root);
+    
+    while(!s1.empty())
+    {
+        Node*temp=s1.top();
+        s1.pop();
+        
+        ans.push_back(temp->data);
+        
+        if(temp->right) s1.push(temp->right);
+        
+        if(temp->left) s1.push(temp->left);
+    }
+    
+    return ans;
 }
