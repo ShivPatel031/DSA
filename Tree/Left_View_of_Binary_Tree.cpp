@@ -19,7 +19,38 @@
 // 0 <= Number of nodes <= 100
 // 0 <= Data of a node <= 1000
 
-// optimize
+
+// optimize logically without flag
+vector<int> leftView(Node *root)
+{
+   vector<int> ans;
+   if(!root) return ans;
+   queue<Node *> q;
+   int count=0;
+   
+   q.push(root);
+   
+   while(!q.empty())
+   {
+        count=q.size();
+        ans.push_back(q.front()->data);
+        
+        while(count--)
+        {
+            Node * temp=q.front();
+            q.pop();
+            
+            if(temp->left) q.push(temp->left);
+            
+            if(temp->right) q.push(temp->right);
+        }
+   }
+   
+   return ans;
+}
+
+
+// optimize with flag
 vector<int> leftView(Node *root)
 {
    vector<int> ans;
