@@ -1,20 +1,20 @@
 // Construct Binary Tree from Preorder and Inorder Traversal leetcode 105 GFG
 
-TreeNode* createTree(vector<int> &arr,vector<int> &preorder,int index,int start,int end)
+TreeNode* createTree(vector<int> &inorder,vector<int> &preorder,int index,int start,int end)
 {
     int pos=-1;
     
     for(int i = start;i<end;i++)
     {
-        if(preorder[index]==arr[i]) pos=i;
+        if(preorder[index]==inorder[i]) pos=i;
     }
     
     if(pos==-1) return nullptr;
      
     TreeNode *temp=new TreeNode(preorder[index]);
     
-    temp->left=createTree(arr,preorder,index+1,start,pos);
-    temp->right=createTree(arr,preorder,index + (pos-start)+1,pos+1,end);
+    temp->left=createTree(inorder,preorder,index+1,start,pos);
+    temp->right=createTree(inorder,preorder,index + (pos-start)+1,pos+1,end);
     
     return temp;
     
