@@ -20,22 +20,28 @@
 
 
 // optimize way
-void helper(TreeNode *root,int &count,int k,int &ans)
+void helper(TreeNode *root,int &k,int &ans)
 {
     if(!root) return;
     
-    helper(root->left,count,k,ans);
-    count++;
-    if(k==count) ans=root->val;
-    if(ans!=-1) return;
-    helper(root->right,count,k,ans);
+    helper(root->left,k,ans);
+    
+    if(k)
+    {
+        ans=root->val;
+        k--;
+    }
+    
+    if(!k) return;
+    
+    helper(root->right,k,ans);
 }
 
 int kthSmallest(TreeNode* root, int k) 
 {
-    int ans=-1,count=0;
+    int ans=-1;
     
-    helper(root,count,k,ans);
+    helper(root,k,ans);
     
     return ans;
 }
