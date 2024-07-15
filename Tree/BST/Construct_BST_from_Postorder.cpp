@@ -25,6 +25,7 @@
 // 1 <= T <= 100
 // 1 <= N <= 200
 
+// most optimize
 Node *createBST(int post[],int &index,int bound,int &size)
 {
     if(index<=-1 || post[index]<bound) return nullptr;
@@ -42,4 +43,39 @@ Node *constructTree (int post[], int size)
     int i = size-1;
     
     return createBST(post,i,INT_MIN,size);
+}
+
+
+// simple and understable
+Node* createBST(int postorder[],int &index,int left,int right)
+{
+    if(index<=-1) return nullptr;
+
+    Node* temp = new Node(postorder[index]);
+
+    if(index-1 !=-1)
+    {
+        index=index-1;
+        
+        if(postorder[index]>temp->data && postorder[index]<right)
+        {
+            temp->right=createBST(postorder,index,temp->data,right);
+        }
+
+        if(left<postorder[index] && postorder[index]<temp->data)
+        {
+            temp->left = createBST(postorder,index,left,temp->data);
+        }
+
+       
+    }
+        
+    return temp;
+}
+
+Node *constructTree (int post[], int size)
+{
+    int i = size-1;
+    
+    return createBST(post,i,INT_MIN,INT_MAX);
 }
