@@ -31,28 +31,25 @@
 // 1 <= stones[i] <= 1000
 
 int lastStoneWeight(vector<int>& stones) 
-{
-    priority_queue<int> q;
+ {
+     priority_queue<int> q;
 
-    for(int i = 0;i<stones.size();i++)
-    {
-        q.push(stones[i]);
-    }    
+     for(int i = 0;i<stones.size();i++)
+     {
+         q.push(stones[i]);
+     }    
 
-    while(q.size() && q.size()!=1)
-    {
-        int big1 = q.top();
-        q.pop();
-        int big2 = q.top();
-        q.pop();
+     while(q.size() && q.size()!=1)
+     {
+         int big1 = q.top();
+         q.pop();
+         big1 -= q.top();
+         q.pop();
 
-        if(big1!=big2)
-        {
-            q.push(abs(big1-big2));
-        }
-    }
+         if(big1) q.push(big1);
+     }
 
-    if(q.size()) return q.top();
+     if(q.size()) return q.top();
 
-    return 0;
-}
+     return 0;
+ }
