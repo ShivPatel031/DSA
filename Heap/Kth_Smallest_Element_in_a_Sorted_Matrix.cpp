@@ -1,4 +1,4 @@
-// Kth element in Matrix GFG leetcode 378
+// Kth Smallest Element in a Sorted Matrix GFG leetcode 378
 
 
 // Given a N x N matrix, where every row and column is sorted in non-decreasing order. Find the kth smallest element in the matrix.
