@@ -22,6 +22,8 @@
 // -104 <= nums[i] <= 104
 // 2 <= k <= 104
 
+// this question can be done by vector because remaider always come between 0 to k and we just have to track how many times reminder came
+
 
 int subarraysDivByK(vector<int>& arr, int k) 
 {
