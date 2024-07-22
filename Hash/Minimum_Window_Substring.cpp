@@ -32,6 +32,55 @@
 // 1 <= m, n <= 105
 // s and t consist of uppercase and lowercase English letters.
 
+// little optimize code
+
+string minWindow(string s, string t) 
+{
+    unordered_map<char,int> m;
+    string ans="";
+
+    for(int i = 0 ; i < t.size() ; i++)
+    {
+        m[t[i]]++;
+    }
+
+    int st=0,e=0,length=INT_MAX,check=t.size(),index=0;
+
+    while(e<s.size())
+    {
+        m[s[e]]--;
+        if(m[s[e]]>=0)    check--;
+
+        while(check==0)
+        {
+            m[s[st]]++;
+            if(m[s[st]]>0) check++;
+
+            if(check==1 && length>e-st+1)
+            {
+                length=e-st+1;
+                index=st;
+            }
+
+            st++;
+        }
+
+        e++;
+    }
+
+    if(length!=INT_MAX)
+    {
+        for(int i = index ; i <index+length;i++)
+        {
+            ans+=s[i];
+        }
+    }  
+
+    return ans;
+}
+
+
+// working code 
 string minWindow(string s, string t) 
 {
     unordered_map<char,int> m;
