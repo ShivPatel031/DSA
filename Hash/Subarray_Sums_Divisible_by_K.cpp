@@ -24,6 +24,8 @@
 
 // this question can be done by vector because remaider always come between 0 to k and we just have to track how many times reminder came
 
+// Note if we use vector then timecomplexcity will be reduce more than map
+
 
 int subarraysDivByK(vector<int>& arr, int k) 
 {
