@@ -13,18 +13,17 @@
 // 1 ≤ V, E ≤ 105
 
 // using DFS
-bool DFS(vector<int> adj[],vector<int> &color,int node,int rb)
+bool DFS(vector<int> adj[],vector<int> &color,int node)
 {
-    if(color[node]==-1) color[node]=rb;
     
     for(int i = 0 ; i < adj[node].size() ; i++)
     {
         if(color[adj[node][i]]==-1)
         {
-            color[adj[node][i]]=!rb;
-            if(!DFS(adj,color,adj[node][i],!rb)) return 0;
+            color[adj[node][i]]=!color[node];
+            if(!DFS(adj,color,adj[node][i])) return 0;
         }
-        else if(color[adj[node][i]]==rb)
+        else if(color[adj[node][i]]==color[node])
         {
             return 0;
         }
@@ -32,16 +31,18 @@ bool DFS(vector<int> adj[],vector<int> &color,int node,int rb)
     
     return 1;
 }
-  
+
 bool isBipartite(int V, vector<int>adj[])
 {
     vector<int> color(V,-1);
     
     for(int i = 0 ; i < V ; i++)
     {
-        if(color[i]==-1 && !DFS(adj,color,i,0))
+    
+        if(color[i]==-1)
         {
-              return 0;
+            color[i]=0;
+            if(!DFS(adj,color,i)) return 0;
         }
     }
     
