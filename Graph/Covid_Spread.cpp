@@ -45,6 +45,16 @@
 // 1 ≤ R,C ≤ 1000
 // 0 ≤ mat[i][j] ≤ 2
 
+int row[4]={-1,1,0,0};
+int column[4] = {0,0,-1,1};
+int r;
+int c;
+
+bool valid(int i,int j)
+{
+    return i>=0 && i<r && j>=0 && j<c;
+}
+
 int helpaterp(vector<vector<int>> hospital)
 {
     queue<pair<int,int> > q;
@@ -58,6 +68,8 @@ int helpaterp(vector<vector<int>> hospital)
     }
     
     int count,t=0;
+    r=hospital.size();
+    c=hospital[0].size();
     
     while(!q.empty())
     {
@@ -68,29 +80,39 @@ int helpaterp(vector<vector<int>> hospital)
         {
             pair<int,int> location=q.front();
             q.pop();
+         
+            // if(location.first-1>=0 and hospital[location.first-1][location.second]==1)
+            // {
+            //     hospital[location.first-1][location.second]=2;
+            //     q.push(make_pair(location.first-1,location.second));
+            // }
             
-            if(location.first-1>=0 and hospital[location.first-1][location.second]==1)
-            {
-                hospital[location.first-1][location.second]=2;
-                q.push(make_pair(location.first-1,location.second));
-            }
+            // if(location.first+1<hospital.size() and hospital[location.first+1][location.second]==1)
+            // {
+            //     hospital[location.first+1][location.second]=2;
+            //     q.push(make_pair(location.first+1,location.second));
+            // }
             
-            if(location.first+1<hospital.size() and hospital[location.first+1][location.second]==1)
-            {
-                hospital[location.first+1][location.second]=2;
-                q.push(make_pair(location.first+1,location.second));
-            }
+            // if(location.second-1>=0 and hospital[location.first][location.second-1]==1)
+            // {
+            //     hospital[location.first][location.second-1]=2;
+            //     q.push(make_pair(location.first,location.second-1));
+            // }
             
-            if(location.second-1>=0 and hospital[location.first][location.second-1]==1)
+            // if(location.second+1<hospital[location.first].size() and hospital[location.first][location.second+1]==1)
+            // {
+            //     hospital[location.first][location.second+1]=2;
+            //     q.push(make_pair(location.first,location.second+1));
+            // }
+
+         // we can use this code instend of above 4 condition
+             for(int i= 0 ; i <4;i++)
             {
-                hospital[location.first][location.second-1]=2;
-                q.push(make_pair(location.first,location.second-1));
-            }
-            
-            if(location.second+1<hospital[location.first].size() and hospital[location.first][location.second+1]==1)
-            {
-                hospital[location.first][location.second+1]=2;
-                q.push(make_pair(location.first,location.second+1));
+                if(valid(location.first + row[i],location.second+column[i]) && hospital[location.first+row[i]][location.second+column[i]]==1)
+                {
+                    hospital[location.first+row[i]][location.second+column[i]]=2;
+                    q.push(make_pair(location.first+row[i],location.second+column[i]));
+                }
             }
         }
     }
