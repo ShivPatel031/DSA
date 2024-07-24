@@ -1,4 +1,4 @@
-// Find the number of islands GFG
+// Find the number of islands GFG leetcode 200
 
 // Given a grid of size n*m (n is the number of rows and m is the number of columns in the grid) consisting of '0's (Water) and '1's(Land). Find the number of islands.
 // Note: An island is either surrounded by water or boundary of grid and is formed by connecting adjacent lands horizontally or vertically or diagonally i.e., in all 8 directions.
@@ -36,6 +36,8 @@
 
 // Constraints:
 // 1 ≤ n, m ≤ 500
+
+// in leetcode we didn't consider digonal so we have to show just 4 side;
 
 int row[8]={-1,-1,0,1,1,1,0,-1};
 int column[8]={0,1,1,1,0,-1,-1,-1};
