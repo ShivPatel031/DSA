@@ -49,6 +49,8 @@ vector<int> bellman_ford(int V, vector<vector<int>>& edges, int S)
     
     while(count--)
     {
+        bool flag = 0 ;
+     
         for(int i = 0 ; i < edges.size() ; i++)
         {
             int u = edges[i][0];
@@ -57,7 +59,16 @@ vector<int> bellman_ford(int V, vector<vector<int>>& edges, int S)
             
             if(path[u]==1e8) continue;
             
-            if(path[u]+w<path[v]) path[v]=path[u]+w;
+            if(path[u]+w<path[v])
+            {
+              flag=1;
+              path[v]=path[u]+w;
+            }
+        }
+
+        if(!flag)
+        {
+         return path;
         }
     }
     
