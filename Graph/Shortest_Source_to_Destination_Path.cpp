@@ -42,6 +42,59 @@
 // 0 <= Y < M
 // 0 <= A[i][j] <= 1
 
+// more optimize without visited matrix and flag
+int row[4]={-1,1,0,0};
+int column[4]={0,0,-1,1};
+int r,c;
+
+bool valid(int i,int j)
+{
+    return i>=0 && i<r && j>=0 && j<c;
+}
+
+int shortestDistance(int N, int M, vector<vector<int>> A, int X, int Y) 
+{
+    r=N;c=M;
+
+    queue<pair<int,int> > q;
+    
+    if(A[0][0]!=1) return -1;
+    
+    q.push({0,0});
+    A[0][0]=0;
+    int count=0,t = 0;
+    
+    while(!q.empty())
+    {
+        t++;
+        count=q.size();
+        while(count--)
+        {
+            int i = q.front().first;
+            int j = q.front().second;
+            q.pop();
+            
+            if(i==X && j==Y) return t-1;
+            
+            for(int m = 0 ; m < 4; m++)
+            {
+                if(valid(row[m]+i,column[m]+j) && A[row[m]+i][column[m]+j])
+                {
+                    A[row[m]+i][column[m]+j]=0;
+                    q.push({row[m]+i,column[m]+j});
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    return -1;
+}
+
+
+// what i first thought
 int row[4]={-1,1,0,0};
 int column[4]={0,0,-1,1};
 int r,c;
@@ -90,6 +143,5 @@ int shortestDistance(int N, int M, vector<vector<int>> A, int X, int Y)
         }
         if(flag) break;
     }
-    
     return flag ? t-1 : -1;
 }
