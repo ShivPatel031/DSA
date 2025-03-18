@@ -17,6 +17,24 @@ void insertionSort(vector<int>& arr) {
         }
     }
 
+// using recursion
+void insertion_sort(vector<int>& arr,int n){
+        if(n>=arr.size()) return;
+        
+        for(int i = n;i>0;i--){
+            if(arr[i]<arr[i-1]){
+                int temp = arr[i];
+                arr[i]=arr[i-1];
+                arr[i-1] = temp;
+            }else{break;}
+        }
+        
+        insertion_sort(arr,n+1);
+    }
+    void insertionSort(vector<int>& arr) {
+        insertion_sort(arr,1);
+    }
+
 // Approach: 
 
 // Select an element in each iteration from the unsorted array(using a loop).
