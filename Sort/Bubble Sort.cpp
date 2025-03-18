@@ -34,6 +34,32 @@ void bubbleSort(vector<int>& arr) {
     }
 }
 
+// using recursion
+// Function to sort the array using bubble sort algorithm.
+    void bubble_sort(vector<int>& arr, int n) {
+    // Base Case: range == 1.
+    if (n == 1) return;
+
+    int didSwap = 0;
+    for (int j = 0; j <= n - 2; j++) {
+        if (arr[j] > arr[j + 1]) {
+            int temp = arr[j + 1];
+            arr[j + 1] = arr[j];
+            arr[j] = temp;
+            didSwap = 1;
+        }
+    }
+
+    // if no swapping happens.
+    if (didSwap == 0) return;
+
+    //Range reduced after recursion:
+    bubble_sort(arr, n - 1);
+}
+    void bubbleSort(vector<int>& arr) {
+            bubble_sort(arr,arr.size());
+    }
+
 // Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in the wrong order. This algorithm is not suitable for large data sets as its average and worst-case time complexity are quite high.
 
 // We sort the array using multiple passes. After the first pass, the maximum element goes to end (its correct position). Same way, after second pass, the second largest element goes to second last position and so on.
