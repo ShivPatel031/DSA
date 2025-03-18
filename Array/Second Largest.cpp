@@ -24,3 +24,22 @@ int print2largest(int arr[], int n) {
 	    return ans;
 	    
 }
+
+// using only one loop
+int getSecondLargest(vector<int> &arr) {
+        int max=INT_MIN;
+        int smax = max+1;
+        for(int i : arr){
+            if(max<i){
+                smax=max;
+                max=i;
+            }
+            
+            if(smax<i and max!=i){
+                smax=i;
+            }
+            
+        }
+        
+        return smax==INT_MIN?-1:smax;
+    }
