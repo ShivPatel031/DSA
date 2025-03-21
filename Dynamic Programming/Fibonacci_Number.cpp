@@ -80,3 +80,19 @@ int fib(int n)
 
     return dp[2];
 }
+
+// using map
+int returnfib(int n,map<int,int> &m)
+{
+    if(m[n]) return m[n];
+    if(n<=2) return 1;
+    m[n]=returnfib(n-1,m)+returnfib(n-2,m);
+    return m[n];
+}
+int fib(int n) {
+
+    if(n<=1) return n;
+    map<int,int> m;
+
+    return returnfib(n,m);
+}
